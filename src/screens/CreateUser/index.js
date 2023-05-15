@@ -1,43 +1,60 @@
-import React, {useState} from 'react';
-import {TextInput, Text, TouchableOpacity, View} from 'react-native'
-import styles from './style';
+import React, { useState } from 'react'
+import { TextInput, Text, TouchableOpacity, View } from 'react-native'
+import styles from './style'
+import firebase from '../../config/firebase'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-export default function CreateUser(){
-   const [nome, setNome] = useState("");
-   const [telefone, setTelefone] = useState("");
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
-   const [errorCreateUser, setErrorCreateUser] = useState(null);
+export default function CreateUser({navigation}) {
+    const [nome, setNome] = useState("")
+    const [telefone, setTelefone] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [errorCreateUser, setErrorCreateUser] = useState(null)
 
-   const validate = () =>{
+    const validate = () => {
+        if (nome == "" || telefone == "" || email == "" || password == "") {
+            setErrorCreateUser("Preencha todos os campos!");
+        } else {
+            setErrorCreateUser(null)
+            createUser();
+        }
+    }
 
-   }
-   
-    return(
+    const createUser = () => {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // Após criar o usuário, envia para tela interna
+                navigation.navigate('Tabs');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // Exibe mensagem de erro em caso de erro
+                setErrorCreateUser(errorMessage);
+            });
+    }
+
+    return (
         <View style={styles.login}>
-
-            {/* <Image style={styles.logo} source={require('../../../assets/logo_achou_white.png')} /> */}
-
-             {/* {errorLogin != null &&
-                <Text style={styles.alert}>{errorLogin}</Text>
-            }  */}
+            {errorCreateUser != null &&
+                <Text style={styles.alert}>{errorCreateUser}</Text>
+            }
 
             <TextInput
                 style={styles.formInput}
-                secureTextEntry={true}
                 placeholder='Nome'
                 value={nome}
                 onChangeText={setNome}
             />
-
             <TextInput
                 style={styles.formInput}
-                secureTextEntry={true}
                 placeholder='Telefone'
                 value={telefone}
                 onChangeText={setTelefone}
             />
-            
             <TextInput
                 style={styles.formInput}
                 placeholder='E-mail'
@@ -56,24 +73,7 @@ export default function CreateUser(){
                 style={styles.formButton}
                 onPress={validate}
             >
-                <Text style={styles.textButton}>Entrar</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.btnCreate}
-                onPress={() => navigation.navigate('CreateUser')}>
-                <Text style={styles.btnCreateText}>Criar Usuário</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.btnCreate}
-                onPress={() => navigation.navigate('CreateProfessional')}>
-                <Text style={styles.btnCreateText}>Criar Profissional</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Tabs')}>
-                <Text style={styles.btnCreateText}>Navegação</Text>
+                <Text style={styles.textButton}>Criar usuário</Text>
             </TouchableOpacity>
         </View>
     );
