@@ -20,10 +20,31 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
 
+    produto:{
+        backgroundColor: "#FFF",
+        padding: 10,
+        marginBottom: 20,
+        borderRadius:10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+
+    },
+
+    descricao: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+
+    valor: {
+        fontSize: 18,
+        color: "#F60",
+    },
+
     btnTextCreate: {
         fontSize: 24,
         textAlign: 'center',
-        color: '#FFF'
+        color: '#FFF',
     }
 });
 
