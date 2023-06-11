@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
         fontSize: 24,
         textAlign: "center"
     },
+
+    image:{
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#070A52"
+    }
 });
 
 export default styles

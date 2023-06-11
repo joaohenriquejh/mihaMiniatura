@@ -47,7 +47,7 @@ export default function Home({ navigation }) {
                 style={styles.btnCreate}
                 onPress={() => navigation.navigate('CreateProduct')}
             >
-                <Text style={styles.btnTextCreate}>+</Text>
+                <Text style={styles.btnTextCreate}>Adicione Sua Coleção</Text>
             </TouchableOpacity>
         </View>
     );

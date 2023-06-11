@@ -1,19 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { deleteApp, initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBIHW5gA7N8wTwz18232KpFDkRqfMwLDQM",
-  authDomain: "achou-app-aula.firebaseapp.com",
-  projectId: "achou-app-aula",
-  storageBucket: "achou-app-aula.appspot.com",
-  messagingSenderId: "136812349354",
-  appId: "1:136812349354:web:c7fd4c2563bea270124dd3"
+  apiKey: "AIzaSyDHurSeKOz9SQ30aV7JFDeYP_DP37dXlyk",
+  authDomain: "minha-miniatura.firebaseapp.com",
+  projectId: "minha-miniatura",
+  storageBucket: "minha-miniatura.appspot.com",
+  messagingSenderId: "1056837700661",
+  appId: "1:1056837700661:web:8a0ccbd218bc2f1fe9b57c"
 };
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
+const storage = getStorage(firebase);
 
 export default firebase;

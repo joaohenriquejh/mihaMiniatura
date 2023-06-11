@@ -25,7 +25,7 @@ export default function App() {
             >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateUser" component={CreateUser} options={{ title: 'Cadastro de Usuário' }} />
-                <Stack.Screen name="CreateProduct" component={CreateProduct} options={{ title: 'Cadastro de produto' }} />
+                <Stack.Screen name="CreateProduct" component={CreateProduct} options={{ title: 'Cadastro de Coleção' }} />
                 <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
