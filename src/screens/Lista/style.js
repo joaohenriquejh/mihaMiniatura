@@ -8,21 +8,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    btnCreate: {
-        backgroundColor: '#00E5FF',
-        width: "80%",
-        height: 100,
-        borderRadius: 10,
-        position: 'absolute',
-        bottom: 300,
-        right: 50,
-        justifyContent: 'center',
-        alignContent: 'center'
-    },
-
     produto:{
         backgroundColor: "#FFF",
-        padding: 10,
+        padding: 20,
         marginBottom: 20,
         borderRadius:10,
         flexDirection: "row",
@@ -33,19 +21,11 @@ const styles = StyleSheet.create({
 
     descricao: {
         fontSize: 20,
+        color:"#121212",
         fontWeight: "bold",
     },
 
-    btnTextCreate: {
-        fontSize: 24,
-        textAlign: 'center',
-        color: '#121212',
-    },
-
-    image:{
-        flex:1,
-        justifyContent: 'center',
-    }
+   
 });
 
 export default styles

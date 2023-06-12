@@ -5,13 +5,14 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 30,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor: "#121212"
     },
 
     alert: {
         fontSize: 18,
         textAlign: "center",
-        color: "#F60",
+        color: "#00E5FF",
         marginBottom: 20
     },
 
@@ -19,16 +20,18 @@ const styles = StyleSheet.create({
         fontSize: 18,
         borderRadius: 10,
         backgroundColor: "#DDD",
+        borderWidth: 1,
+        borderColor: "#00E5FF",
         padding: 20,
-        marginBottom: 20,
+        marginBottom: 30,
         width: "100%"
     },
 
     formBtn: {
-        backgroundColor: "#070A52",
+        backgroundColor: "#00E5FF",
         padding: 10,
         borderRadius: 10,
-        marginBottom: 20,
+        marginTop: 40,
         width: "100%"
     },
 
@@ -38,11 +41,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
 
-    image:{
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#070A52"
-    }
+   
 });
 
 export default styles

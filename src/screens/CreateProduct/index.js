@@ -13,8 +13,7 @@ export default function CreateProduct({ navigation }) {
     const [cor, setCor] = useState("")
     const [ano, setAno] = useState("")
     const [errorCreateProduct, setErrorCreateProduct] = useState(null)
-    const [imgURL, setImgURL] = useState("");
-    const [progressPorcent, setPorgessPorcent] = useState(0);
+
 
     const validade = () => {
         if (marca == "" || modelo == "" || cor == "" || ano == "") {
@@ -24,33 +23,6 @@ export default function CreateProduct({ navigation }) {
             createProduct()
         }
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const file = event.target[0]?.files[0];
-        if (!file) return;
-
-        const storageRef = ref(storage, `images/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const progress = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                setPorgessPorcent(progress);
-            },
-            (error) => {
-                alert(error);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImgURL(downloadURL);
-                });
-            }
-        );
-    };
 
     const createProduct = () => {
         const newProduct = addDoc(collection(db, 'products'), {
@@ -70,18 +42,9 @@ export default function CreateProduct({ navigation }) {
                 <Text style={styles.alert}>{errorCreateProduct}</Text>
             }
 
-
-            <Image
-                style={styles.image}
-                source={{
-                    uri: 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg',
-                }}
-            />
-
             <TouchableOpacity
                 style={styles.formBtn}
-                onPress={handleSubmit}
-
+                onPress={() => navigation.navigate('Camera')}
             >
                 <Text style={styles.textBtn}>Upload</Text>
             </TouchableOpacity>
