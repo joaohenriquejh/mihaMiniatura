@@ -9,6 +9,7 @@ import Lista from './src/screens/Lista';
 import Account from './src/screens/Account/';
 import AboutApp from './src/screens/AboutApp/';
 import { MaterialIcons } from "@expo/vector-icons"
+import UpdateProduct from "./src/screens/UpdateProduct";
 
 
 const Stack = createStackNavigator();
@@ -27,6 +28,7 @@ export default function App() {
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name="CreateUser" component={CreateUser} options={{ title: 'Cadastro de Usuário' }} />
                 <Stack.Screen name="CreateProduct" component={CreateProduct} options={{ title: 'Cadastro de Coleção' }} />
+                <Stack.Screen name="UpdateProduct" component={UpdateProduct} options={{ title: 'Atualização de Coleção' }} />
                 <Stack.Screen name="Lista" component={Lista} options={{ title: 'Carros' }} />
                 <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
             </Stack.Navigator>

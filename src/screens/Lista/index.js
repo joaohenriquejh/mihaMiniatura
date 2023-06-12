@@ -44,7 +44,7 @@ export default function Lista({ navigation }) {
                                 <MaterialIcons name="delete" size={26} color="#00E5FF"></MaterialIcons>
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => navigation.navigate('CreateProduct')}>
+                            <TouchableOpacity onPress={() => navigation.navigate('UpdateProduct')}>
                                 <MaterialIcons name="edit" size={26} color="#00E5FF"></MaterialIcons>
                             </TouchableOpacity>
                         </View>

@@ -3,11 +3,11 @@ import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import styles from './style'
 import firebase from '../../config/firebase'
 import { getFirestore } from 'firebase/firestore'
-import { collection, addDoc, serverTimestamp, documentId, updateDoc, doc } from 'firebase/firestore'
+import { serverTimestamp, documentId, updateDoc, doc } from 'firebase/firestore'
 import storage from '../../config/firebase'
 const db = getFirestore(firebase)
 
-export default function CreateProduct({ navigation }) {
+export default function UpdateProduct({ navigation }) {
     const [marca, setMarca] = useState("")
     const [modelo, setModelo] = useState("")
     const [cor, setCor] = useState("")
@@ -20,26 +20,12 @@ export default function CreateProduct({ navigation }) {
             setErrorCreateProduct("Informe todos os campos")
         } else{
             setErrorCreateProduct(null)
-            createProduct()
-
+            updateProduct()
         }
     }
 
-    const createProduct = () => {
-        const newProduct = addDoc(collection(db, 'products'), {
-            marca: marca,
-            modelo: modelo,
-            cor: cor,
-            ano: ano,
-            data_registro: serverTimestamp()
-        });
-
-        navigation.navigate('Tabs')
-    }
-
-
-    const updateProduct = async (id) => {
-        const productRef = doc(db, 'products', id); // Substitua 'DOCUMENT_ID' pelo ID do documento que deseja atualizar
+    const updateProduct = async () => {
+        const productRef = doc(db, 'products', documentId); // Substitua 'DOCUMENT_ID' pelo ID do documento que deseja atualizar
         const updatedFields = {
             marca: marca,
             modelo: modelo,
@@ -94,7 +80,7 @@ export default function CreateProduct({ navigation }) {
                 style={styles.formBtn}
                 onPress={validade}
             >
-                <Text style={styles.textBtn}>Criar Coleção</Text>
+                <Text style={styles.textBtn}>Atualizar Dados</Text>
             </TouchableOpacity>
 
         </View>
