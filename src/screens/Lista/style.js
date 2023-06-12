@@ -9,10 +9,12 @@ const styles = StyleSheet.create({
     },
 
     produto:{
-        backgroundColor: "#FFF",
+        backgroundColor: "#121212",
         padding: 20,
         marginBottom: 20,
         borderRadius:10,
+        borderWidth: 1,
+        borderColor: "#00E5FF",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
@@ -21,9 +23,17 @@ const styles = StyleSheet.create({
 
     descricao: {
         fontSize: 20,
-        color:"#121212",
+        color:"#FFF",
         fontWeight: "bold",
     },
+
+    containerIcons:{
+        flexDirection:"column",
+    },
+
+    icons:{
+        marginBottom: 50,
+    }
 
    
 });

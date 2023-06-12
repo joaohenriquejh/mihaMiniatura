@@ -20,35 +20,10 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
 
-    produto:{
-        backgroundColor: "#FFF",
-        padding: 10,
-        marginBottom: 20,
-        borderRadius:10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
-
-    },
-
-    descricao: {
-        fontSize: 20,
-        fontWeight: "bold",
-    },
-
     btnTextCreate: {
         fontSize: 24,
         textAlign: 'center',
         color: '#00E5FF',
-    },
-
-   
-
-    logo: {
-        width: 360,
-        height: 200,
-        marginBottom: 400,
-        
     },
 
 });

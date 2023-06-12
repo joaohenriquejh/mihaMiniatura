@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create(
     {
         login:{
-            backgroundColor: "#F60",
+            backgroundColor: "#11111",
             flex: 1,
             padding: 30,
             alignItems:"center",
@@ -11,14 +11,14 @@ const styles = StyleSheet.create(
         },
 
         logo: {
-            width: 230,
-            height: 100,
+            width: 380,
+            height: 200,
             marginBottom: 30
         },
 
         alert: {
             fontSize: 18,
-            color:"#FFF",
+            color:"#121212",
             textAlign: "center",
             marginBottom: 20
         },
@@ -33,7 +33,7 @@ const styles = StyleSheet.create(
         },
 
         formButton: {
-            backgroundColor: "#070A52",
+            backgroundColor: "#121212",
             padding: 10,
             borderRadius: 10,
             marginBottom: 20,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create(
         },
 
         btnCreateText: {
-            color: "#FFF",
+            color: "#121212",
         }
 
     }

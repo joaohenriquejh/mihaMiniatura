@@ -1,8 +1,9 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import firebase from '../../config/firebase'
 import { getAuth, signOut } from "firebase/auth";
+import styles from './style';
 
-export default function Account({navigation}) {
+export default function Account({ navigation }) {
     const signOutFirebase = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
@@ -14,11 +15,12 @@ export default function Account({navigation}) {
     }
 
     return (
-        <View>
+        <View style={styles.container}> 
             <TouchableOpacity
+                style={styles.btnCreate}
                 onPress={signOutFirebase}
             >
-                <Text>Sair</Text>
+                <Text style={styles.btnTextCreate}>Sair</Text>
             </TouchableOpacity>
         </View>
     );

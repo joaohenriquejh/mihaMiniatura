@@ -46,7 +46,7 @@ export default function Login({ navigation }) {
     return (
         <View style={styles.login}>
 
-            <Image style={styles.logo} source={require('../../../assets/logo_achou_white.png')} />
+            <Image style={styles.logo} source={require('../../../assets/logo-removebg.png')} />
 
             {errorLogin != null &&
                 <Text style={styles.alert}>{errorLogin}</Text>
