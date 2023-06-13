@@ -7,7 +7,6 @@ import CreateProduct from './src/screens/CreateProduct/';
 import Home from './src/screens/Home/';
 import Lista from './src/screens/Lista';
 import Account from './src/screens/Account/';
-import AboutApp from './src/screens/AboutApp/';
 import { MaterialIcons } from "@expo/vector-icons"
 import UpdateProduct from "./src/screens/UpdateProduct";
 

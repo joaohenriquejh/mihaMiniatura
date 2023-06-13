@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import React, { useEffect} from 'react';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import styles from './style'
 import firebase from '../../config/firebase'
 import { getFirestore } from 'firebase/firestore'
-import { serverTimestamp, documentId, updateDoc, doc } from 'firebase/firestore'
-import storage from '../../config/firebase'
+import { serverTimestamp, updateDoc, doc, getDoc } from 'firebase/firestore'
+
 const db = getFirestore(firebase)
 
-export default function UpdateProduct({ navigation }) {
+export default function UpdateProduct({ route, navigation }) {
+    const { id } = route.params;
     const [marca, setMarca] = useState("")
     const [modelo, setModelo] = useState("")
     const [cor, setCor] = useState("")
@@ -18,28 +20,57 @@ export default function UpdateProduct({ navigation }) {
     const validade = () => {
         if (marca == "" || modelo == "" || cor == "" || ano == "") {
             setErrorCreateProduct("Informe todos os campos")
-        } else{
+        } else {
             setErrorCreateProduct(null)
             updateProduct()
         }
     }
 
-    const updateProduct = async () => {
-        const productRef = doc(db, 'products', documentId); // Substitua 'DOCUMENT_ID' pelo ID do documento que deseja atualizar
-        const updatedFields = {
-            marca: marca,
-            modelo: modelo,
-            cor: cor,
-            ano: ano,
-            data_registro: serverTimestamp()
+    useEffect(() => {
+        // Carregar dados da atividade com base no ID
+        const loadActivity = async () => {
+            try {
+                const activityRef = doc(db, 'products', id);
+                const activitySnapshot = await getDoc(activityRef);
+
+                if (activitySnapshot.exists()) {
+                    const { marca, modelo, cor, ano } = activitySnapshot.data();
+                    setMarca(marca);
+                    setModelo(modelo);
+                    setCor(cor);
+                    setAno(ano);
+                } else {
+                    // Atividade não encontrada
+                }
+            } catch (error) {
+                console.error('Erro ao carregar atividade:', error);
+            }
         };
 
-        await updateDoc(productRef, updatedFields);
+        loadActivity();
+    }, []);
 
-        navigation.navigate('Tabs');
+    const updateProduct = async () => {
+        try {
+            const productRef = doc(db, 'products', id); // Substitua 'DOCUMENT_ID' pelo ID do documento que deseja atualizar
+            const updatedFields = {
+                marca: marca,
+                modelo: modelo,
+                cor: cor,
+                ano: ano,
+                data_registro: serverTimestamp()
+            };
+
+            await updateDoc(productRef, updatedFields);
+
+            navigation.navigate('Tabs');
+        } catch (error) {
+            console.error('Erro ao atualizar atividade:', error);
+        }
     }
 
-    
+
+
 
 
     return (

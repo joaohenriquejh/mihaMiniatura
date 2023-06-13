@@ -1,7 +1,8 @@
 import { Text, TouchableOpacity, View, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import firebase from '../../config/firebase';
-import { getFirestore, collection, orderBy, query, onSnapshot, doc, deleteDoc, documentId, serverTimestamp, updateDoc } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth';
+import { getFirestore, collection, orderBy, query, onSnapshot, doc, deleteDoc, where } from 'firebase/firestore'
 const db = getFirestore(firebase)
 import styles from './style';
 import { MaterialIcons } from '@expo/vector-icons'
@@ -13,9 +14,20 @@ export default function Lista({ navigation }) {
         deleteDoc(doc(db, "products", id))
     }
 
+    const editActivitie = (id) => {
+        navigation.navigate('UpdateProduct', { id: id })
+    }
 
     useEffect(() => {
-        const q = query(collection(db, "products"), orderBy("data_registro", "desc"));
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+         const q = query(
+            collection(db, "products"),
+            where("userId", "==", user.uid), // Filtrar as atividades pelo ID do usuário
+            orderBy("data_registro", "asc")
+        );
+
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             const products = [];
             querySnapshot.forEach((doc) => {
@@ -44,7 +56,7 @@ export default function Lista({ navigation }) {
                                 <MaterialIcons name="delete" size={26} color="#00E5FF"></MaterialIcons>
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress={() => navigation.navigate('UpdateProduct')}>
+                            <TouchableOpacity  onPress={() => editActivitie(item.id)}>
                                 <MaterialIcons name="edit" size={26} color="#00E5FF"></MaterialIcons>
                             </TouchableOpacity>
                         </View>

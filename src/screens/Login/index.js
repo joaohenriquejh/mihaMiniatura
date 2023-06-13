@@ -1,7 +1,6 @@
 import { TextInput, Text, TouchableOpacity, View, Image } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import styles from './style';
-import firebase from '../../config/firebase'
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
 export default function Login({ navigation }) {

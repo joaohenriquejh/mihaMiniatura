@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { TextInput, Text, TouchableOpacity, View } from 'react-native'
 import styles from './style'
-import firebase from '../../config/firebase'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function CreateUser({navigation}) {
@@ -27,7 +26,7 @@ export default function CreateUser({navigation}) {
                 // Signed in
                 const user = userCredential.user;
                 // Após criar o usuário, envia para tela interna
-                navigation.navigate('Tabs');
+                navigation.navigate('Tabs', { user });  // Passa o objeto user para a tela Home
             })
             .catch((error) => {
                 const errorCode = error.code;

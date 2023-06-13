@@ -1,10 +1,10 @@
-import { FlatList, Text, TouchableOpacity, View, Image } from 'react-native'
-import React, { useEffect, useState } from 'react';
+import { Text, TouchableOpacity, View, Image } from 'react-native'
+
 import styles from '../Home/style';
 import firebase from '../../config/firebase';
-import { getFirestore, collection, orderBy, query, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 const db = getFirestore(firebase)
-import { MaterialIcons } from '@expo/vector-icons'
+
 
 export default function Home({ navigation }) {
     return (

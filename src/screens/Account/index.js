@@ -1,5 +1,4 @@
 import { Text, TouchableOpacity, View } from 'react-native'
-import firebase from '../../config/firebase'
 import { getAuth, signOut } from "firebase/auth";
 import styles from './style';
 

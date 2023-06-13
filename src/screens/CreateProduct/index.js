@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import styles from './style'
 import firebase from '../../config/firebase'
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore'
-import { collection, addDoc, serverTimestamp, documentId, updateDoc, doc } from 'firebase/firestore'
-import storage from '../../config/firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 const db = getFirestore(firebase)
 
 export default function CreateProduct({ navigation }) {
@@ -21,40 +21,25 @@ export default function CreateProduct({ navigation }) {
         } else{
             setErrorCreateProduct(null)
             createProduct()
-
+            navigation.navigate('Lista')
         }
     }
 
     const createProduct = () => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        
         const newProduct = addDoc(collection(db, 'products'), {
             marca: marca,
             modelo: modelo,
             cor: cor,
             ano: ano,
-            data_registro: serverTimestamp()
+            data_registro: serverTimestamp(),
+            userId: user.uid
         });
 
         navigation.navigate('Tabs')
     }
-
-
-    const updateProduct = async (id) => {
-        const productRef = doc(db, 'products', id); // Substitua 'DOCUMENT_ID' pelo ID do documento que deseja atualizar
-        const updatedFields = {
-            marca: marca,
-            modelo: modelo,
-            cor: cor,
-            ano: ano,
-            data_registro: serverTimestamp()
-        };
-
-        await updateDoc(productRef, updatedFields);
-
-        navigation.navigate('Tabs');
-    }
-
-    
-
 
     return (
         <View style={styles.container}>
